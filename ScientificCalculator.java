@@ -19,7 +19,7 @@ public class ScientificCalculator {
 
             try {
                 choice = Integer.parseInt(input); // Try to parse the input into an integer
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
                 // If parsing fails, print an error message and continue the loop
                 System.out.println("Invalid choice. Please enter a number between 1 and 5.");
                 continue;
