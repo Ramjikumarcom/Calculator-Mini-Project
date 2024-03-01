@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class ScientificCalculator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        int choice = 0;
         double result;
 
         do {
@@ -14,7 +14,15 @@ public class ScientificCalculator {
             System.out.println("4. Power function");
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+
+            String input = scanner.nextLine(); // Read the input as a string
+
+            if(input.length() != 1 || !input.matches("\\d+")) {
+                System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                continue;
+            }
+            
+            choice = Integer.parseInt(input);
 
             switch (choice) {
                 case 1:
