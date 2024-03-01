@@ -39,7 +39,7 @@ pipeline {
         stage('Push the Docker Image') {
             steps {
                 script{
-                    docker.withRegistry('', 'DockerHubCred') {
+                    docker.withRegistry('', 'docker_hub') {
                     sh 'docker tag "${DOCKER_IMAGE_NAME}" vedanteepathak/calculatorjava:latest'
                     sh 'docker push vedanteepathak/calculatorjava'
                     }
