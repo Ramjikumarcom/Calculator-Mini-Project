@@ -14,7 +14,16 @@ public class ScientificCalculator {
             System.out.println("4. Power function");
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+
+            String input = scanner.nextLine(); // Read the input as a string
+
+            try {
+                choice = Integer.parseInt(input); // Try to parse the input into an integer
+            } catch (NumberFormatException e) {
+                // If parsing fails, print an error message and continue the loop
+                System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                continue;
+            }
 
             switch (choice) {
                 case 1:
