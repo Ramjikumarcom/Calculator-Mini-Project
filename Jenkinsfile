@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_IMAGE_NAME = 'calculatorjava'
-        GITHUB_REPO_URL = 'https://github.com/anarghya15/SPEMiniProject.git'
+        GITHUB_REPO_URL = 'https://github.com/VedanteePathak/Calculator-Mini-Project.git'
     }
     
     stages {
@@ -45,8 +45,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerHubCred') {
-                    sh 'docker tag "${DOCKER_IMAGE_NAME}" anarghya15/calculatorjava:latest'
-                    sh 'docker push anarghya15/calculatorjava'
+                    sh 'docker tag "${DOCKER_IMAGE_NAME}" vedanteepathak/calculatorjava:latest'
+                    sh 'docker push vedanteepathak/calculatorjava'
                     }
                  }
             }
@@ -55,27 +55,11 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 script {
-                    ansiblePlaybook(
-                        playbook: 'deploy.yml',
-                        inventory: 'inventory'
-                     )
+                    sh 'ansible-playbook deploy.yml'
                 }
             }
         }
     }
-    post {
-        success {
-            mail subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      			body: """SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
-                Check console output at ${env.BUILD_URL}""", 
-            	to: 'h.anarghya@iiitb.ac.in'
-        }
-        failure {
-            mail subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      			body: """FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':
-                Check console output at ${env.BUILD_URL}""", 
-            	to: 'h.anarghya@iiitb.ac.in'
-        }
-    }
+    
 }
 
