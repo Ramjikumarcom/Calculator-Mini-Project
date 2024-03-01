@@ -17,13 +17,12 @@ public class ScientificCalculator {
 
             String input = scanner.nextLine(); // Read the input as a string
 
-            try {
-                choice = Integer.parseInt(input); // Try to parse the input into an integer
-            } catch (Exception e) {
-                // If parsing fails, print an error message and continue the loop
+            if(input.length() != 1 || !input.matches("\\d+")) {
                 System.out.println("Invalid choice. Please enter a number between 1 and 5.");
                 continue;
             }
+            
+            choice = Integer.parseInt(input);
 
             switch (choice) {
                 case 1:
