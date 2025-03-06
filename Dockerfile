@@ -2,8 +2,8 @@
 FROM openjdk:17-slim
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /App
 
 # Copy the JAR file into the container
-COPY target/calculator-1.0-SNAPSHOT.jar /app/calculator.jar
+COPY target/calculator-1.0-SNAPSHOT.jar /App/calculator.jar
 
